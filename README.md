@@ -6,7 +6,6 @@ This project assesses the creditworthiness of loan applicants using financial an
 - `dataset/` — Contains the raw data (`german.data`)
 - `src/` — Source code for data processing, modeling, and prediction
 - `outputs/` — Model outputs, reports, and results
-- `.github/` — Project instructions
 
 ## Main Steps
 1. Data Loading & Preprocessing (using Scikit-Learn Pipeline)
