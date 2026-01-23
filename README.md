@@ -4,7 +4,7 @@ This project assesses the creditworthiness of loan applicants using financial an
 
 ## Project Structure
 - `dataset/` — Contains the raw data (`german.data`)
-- `src/` — Source code for data processing, modeling, and prediction
+- `src/` — Source code for data processing, modeling, and API
 - `outputs/` — Model outputs, reports, and results
 
 ## Main Steps
@@ -13,11 +13,14 @@ This project assesses the creditworthiness of loan applicants using financial an
 3. Feature Engineering
 4. Model Training & Evaluation
 5. Prediction Script
+6. API Deployment (FastAPI)
 
 ## Usage
 1. Install dependencies: `pip install -r requirements.txt`
 2. Train the model: `python src/main.py`
-3. Run a prediction: `python src/predict.py`
+3. Run a prediction (CLI): `python src/predict.py`
+4. Run the API: `uvicorn src.api:app --reload`
+5. Access API Docs: Open `http://127.0.0.1:8000/docs` in your browser.
 
 ## Requirements
 - Python 3.8+
