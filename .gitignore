@@ -14,6 +14,7 @@ dist/
 # ML
 outputs/
 dataset/
+backend/__pycache__/
 
 # Frontend
 frontend/node_modules/

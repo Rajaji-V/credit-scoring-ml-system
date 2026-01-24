@@ -4,7 +4,7 @@ This project assesses the creditworthiness of loan applicants using financial an
 
 ## Project Structure
 - `dataset/` — Contains the raw data (`german.data`)
-- `src/` — Source code for data processing, modeling, and API
+- `backend/` — Source code for data processing, modeling, and API
 - `frontend/` — React application with Vite, Lucide, and Framer Motion
 - `outputs/` — Model outputs, reports, and results
 
@@ -21,8 +21,8 @@ This project assesses the creditworthiness of loan applicants using financial an
 
 ### Backend (Python/FastAPI)
 1. Install dependencies: `pip install -r requirements.txt`
-2. Train the model: `python src/main.py`
-3. Run the API: `uvicorn src.api:app --reload`
+2. Train the model: `python backend/main.py`
+3. Run the API: `uvicorn backend.api:app --reload`
 4. Access API Docs: Open `http://127.0.0.1:8000/docs`
 
 ### Frontend (React/Vite)
