@@ -4,10 +4,21 @@ import joblib
 import os
 import pandas as pd
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(
     title="Credit Scoring API",
     description="API to assess creditworthiness of loan applicants using machine learning.",
     version="1.0.0"
+)
+
+# Allow CORS for local development
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For production, replace with specific origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Load the pipeline

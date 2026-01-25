@@ -1,9 +1,20 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { ShieldCheck, BarChart3, Zap, Lock, RefreshCw, Cpu } from 'lucide-react'
 import { motion } from 'framer-motion'
+import CreditForm from './components/CreditForm'
 import './App.css'
 
 function App() {
+  const [showForm, setShowForm] = useState(false)
+  const formRef = useRef(null)
+
+  const scrollToForm = () => {
+    setShowForm(true)
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }, 100)
+  }
+
   const features = [
     {
       icon: <ShieldCheck size={24} />,
@@ -50,11 +61,23 @@ function App() {
             Deploy robust machine learning models to assess risk and empower financial decisions with our next-generation credit scoring platform.
           </p>
           <div className="cta-group">
-            <button className="primary-btn">Get Started</button>
+            <button className="primary-btn" onClick={scrollToForm}>Get Started</button>
             <button className="secondary-btn">Documentation</button>
           </div>
         </motion.div>
       </header>
+
+      {showForm && (
+        <motion.section
+          ref={formRef}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          style={{ marginBottom: '4rem' }}
+        >
+          <CreditForm />
+        </motion.section>
+      )}
 
       <main className="features-grid">
         {features.map((feature, index) => (
