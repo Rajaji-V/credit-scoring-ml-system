@@ -162,6 +162,22 @@ const CreditForm = () => {
                             <span className="result-value">{(result.probability * 100).toFixed(1)}%</span>
                         </div>
                     </div>
+
+                    <div style={{ marginTop: '2rem', borderTop: '1px solid var(--border)', paddingTop: '1rem' }}>
+                        <details style={{ cursor: 'pointer' }}>
+                            <summary style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>View Raw JSON Response</summary>
+                            <pre style={{
+                                background: 'rgba(0,0,0,0.2)',
+                                padding: '1rem',
+                                borderRadius: 'var(--radius)',
+                                marginTop: '1rem',
+                                fontSize: '0.75rem',
+                                overflowX: 'auto'
+                            }}>
+                                {JSON.stringify(result, null, 2)}
+                            </pre>
+                        </details>
+                    </div>
                 </div>
             )}
         </div>
