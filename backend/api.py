@@ -51,8 +51,8 @@ class ApplicantData(BaseModel):
     Telephone: str
     ForeignWorker: str
 
-    class Config:
-        json_schema_extra = {
+    model_config = {
+        "json_schema_extra": {
             "example": {
                 "Status": "A11",
                 "Duration": 6,
@@ -76,6 +76,7 @@ class ApplicantData(BaseModel):
                 "ForeignWorker": "A201"
             }
         }
+    }
 
 class PredictionResponse(BaseModel):
     prediction: str

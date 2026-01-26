@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { creditService } from '../services/api';
-import { Send, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Send, Loader2, AlertCircle, TrendingUp, Shield, Activity } from 'lucide-react';
 import './CreditForm.css';
 
 const CreditForm = () => {
@@ -47,59 +48,74 @@ const CreditForm = () => {
 
         try {
             const data = await creditService.predict(formData);
-            setResult(data);
+            // Delay result slightly for better UX sensation
+            setTimeout(() => {
+                setResult(data);
+                setLoading(false);
+            }, 800);
         } catch (err) {
-            setError(err.response?.data?.detail || 'Failed to connect to the backend. Is the API running?');
-        } finally {
+            setError('System Integration Error: Unable to reach prediction engine.');
             setLoading(false);
         }
     };
 
+    const getRiskColor = (level) => {
+        switch (level) {
+            case 'Low': return 'var(--success)';
+            case 'Medium': return 'var(--warning)';
+            case 'High': return 'var(--error)';
+            default: return 'var(--primary)';
+        }
+    };
+
     return (
-        <div className="form-card">
-            <h2 className="form-title">Applicant Risk Assessment</h2>
+        <motion.div
+            className="form-card glass-card"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+        >
+            <h2 className="form-title">Intelligence Engine</h2>
 
             <form onSubmit={handleSubmit} className="form-grid">
-                {/* Basic Info */}
                 <div className="form-group">
-                    <label>Checking Account Status</label>
+                    <label><Activity size={14} style={{ marginRight: 8 }} />Checking Balance</label>
                     <select name="Status" value={formData.Status} onChange={handleChange}>
-                        <option value="A11">&lt; 0 DM</option>
-                        <option value="A12">0 - 200 DM</option>
-                        <option value="A13">&gt;= 200 DM</option>
-                        <option value="A14">No account</option>
+                        <option value="A11">Less than 0 DM</option>
+                        <option value="A12">0 to 200 DM</option>
+                        <option value="A13">Greater than 200 DM</option>
+                        <option value="A14">No Checking Account</option>
                     </select>
                 </div>
 
                 <div className="form-group">
-                    <label>Duration (months)</label>
+                    <label>Loan Duration (mos)</label>
                     <input type="number" name="Duration" value={formData.Duration} onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
-                    <label>Credit Amount (DM)</label>
+                    <label>Credit Requested (DM)</label>
                     <input type="number" name="CreditAmount" value={formData.CreditAmount} onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
-                    <label>Age</label>
+                    <label>Applicant Age</label>
                     <input type="number" name="Age" value={formData.Age} onChange={handleChange} />
                 </div>
 
-                {/* Financial Background */}
                 <div className="form-group">
-                    <label>Savings</label>
+                    <label>Savings Profile</label>
                     <select name="Savings" value={formData.Savings} onChange={handleChange}>
                         <option value="A61">&lt; 100 DM</option>
                         <option value="A62">100 - 500 DM</option>
                         <option value="A63">500 - 1000 DM</option>
                         <option value="A64">&gt;= 1000 DM</option>
-                        <option value="A65">Unknown/No savings</option>
+                        <option value="A65">Unknown / No Savings</option>
                     </select>
                 </div>
 
                 <div className="form-group">
-                    <label>Employment Status</label>
+                    <label>Employment Tenure</label>
                     <select name="EmploymentSince" value={formData.EmploymentSince} onChange={handleChange}>
                         <option value="A71">Unemployed</option>
                         <option value="A72">&lt; 1 year</option>
@@ -109,78 +125,74 @@ const CreditForm = () => {
                     </select>
                 </div>
 
-                <div className="form-group">
-                    <label>Job Category</label>
-                    <select name="Job" value={formData.Job} onChange={handleChange}>
-                        <option value="A171">Unemployed/Unskilled</option>
-                        <option value="A172">Unskilled/Resident</option>
-                        <option value="A173">Skilled Employee</option>
-                        <option value="A174">Management/Self-employed</option>
-                    </select>
-                </div>
-
-                <div className="form-group">
-                    <label>Housing</label>
-                    <select name="Housing" value={formData.Housing} onChange={handleChange}>
-                        <option value="A151">Rent</option>
-                        <option value="A152">Own</option>
-                        <option value="A153">For Free</option>
-                    </select>
-                </div>
-
-                <button type="submit" className="form-submit" disabled={loading}>
-                    {loading ? <Loader2 className="animate-spin" /> : <Send size={20} />}
-                    {loading ? 'Analyzing...' : 'Predict Credit Score'}
+                <button type="submit" className="primary-btn form-submit" disabled={loading}>
+                    {loading ? <Loader2 className="animate-spin" /> : <Shield size={20} />}
+                    {loading ? 'PROCESSING INTELLIGENCE...' : 'EXECUTE PREDICTION'}
                 </button>
             </form>
 
-            {error && (
-                <div style={{ marginTop: '1.5rem', color: 'var(--error)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <AlertCircle size={20} />
-                    <span>{error}</span>
-                </div>
-            )}
+            <AnimatePresence>
+                {error && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        style={{ marginTop: '2rem', color: 'var(--error)', textAlign: 'center' }}
+                    >
+                        <AlertCircle size={20} style={{ verticalAlign: 'middle', marginRight: 8 }} />
+                        {error}
+                    </motion.div>
+                )}
 
-            {result && (
-                <div className={`result-container`}>
-                    <div className="result-header">
-                        <h3>Prediction Results</h3>
-                        <span className={`result-badge badge-${result.risk_level.toLowerCase()}`}>
-                            {result.risk_level} Risk
-                        </span>
-                    </div>
-
-                    <div className="result-grid">
-                        <div className="result-item">
-                            <span className="result-label">Assessment</span>
-                            <span className="result-value" style={{ color: result.prediction === 'Good Credit' ? 'var(--success)' : 'var(--error)' }}>
-                                {result.prediction}
-                            </span>
+                {result && (
+                    <motion.div
+                        className="result-viz-container"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ type: 'spring', damping: 12 }}
+                    >
+                        <div className="gauge-section">
+                            <div className="gauge-wrapper">
+                                <div className="gauge-base"></div>
+                                <div
+                                    className="gauge-value"
+                                    style={{
+                                        '--percentage': (1 - result.probability) * 100,
+                                        borderColor: getRiskColor(result.risk_level)
+                                    }}
+                                ></div>
+                                <div className="gauge-center">
+                                    <div className="gauge-text" style={{ color: getRiskColor(result.risk_level) }}>
+                                        {Math.round((1 - result.probability) * 100)}
+                                    </div>
+                                    <div className="gauge-label">Stability Score</div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="result-item">
-                            <span className="result-label">Default Probability</span>
-                            <span className="result-value">{(result.probability * 100).toFixed(1)}%</span>
-                        </div>
-                    </div>
 
-                    <div style={{ marginTop: '2rem', borderTop: '1px solid var(--border)', paddingTop: '1rem' }}>
-                        <details style={{ cursor: 'pointer' }}>
-                            <summary style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>View Raw JSON Response</summary>
-                            <pre style={{
-                                background: 'rgba(0,0,0,0.2)',
-                                padding: '1rem',
-                                borderRadius: 'var(--radius)',
-                                marginTop: '1rem',
-                                fontSize: '0.75rem',
-                                overflowX: 'auto'
-                            }}>
-                                {JSON.stringify(result, null, 2)}
-                            </pre>
-                        </details>
-                    </div>
-                </div>
-            )}
-        </div>
+                        <div className="result-details">
+                            <div className="status-box">
+                                <div className="status-label">Protocol Decision</div>
+                                <div className="status-value" style={{ color: result.prediction === 'Good Credit' ? 'var(--success)' : 'var(--error)' }}>
+                                    {result.prediction.toUpperCase()}
+                                </div>
+                            </div>
+
+                            <div className="status-box">
+                                <div className="status-label">Risk Threshold</div>
+                                <div className="status-value">
+                                    <span
+                                        className="risk-dot"
+                                        style={{ backgroundColor: getRiskColor(result.risk_level), color: getRiskColor(result.risk_level) }}
+                                    ></span>
+                                    {result.risk_level} Risk
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.div>
     );
 };
 

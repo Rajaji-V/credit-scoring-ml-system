@@ -73,11 +73,18 @@ function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          style={{ marginBottom: '4rem' }}
+          style={{ marginBottom: '8rem' }}
         >
           <CreditForm />
         </motion.section>
       )}
+
+      <section style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1rem' }}>Enterprise Features</h2>
+        <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
+          Discover the technology stack driving our high-precision financial analysis and risk assessment engine.
+        </p>
+      </section>
 
       <main className="features-grid">
         {features.map((feature, index) => (
