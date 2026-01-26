@@ -12,7 +12,6 @@ dist/
 .pytest_cache/
 
 # ML
-outputs/
 dataset/
 backend/__pycache__/
 

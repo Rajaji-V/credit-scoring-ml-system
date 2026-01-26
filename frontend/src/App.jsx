@@ -2,10 +2,12 @@ import { useState, useRef } from 'react'
 import { ShieldCheck, BarChart3, Zap, Lock, RefreshCw, Cpu } from 'lucide-react'
 import { motion } from 'framer-motion'
 import CreditForm from './components/CreditForm'
+import ModelInsights from './components/ModelInsights'
 import './App.css'
 
 function App() {
   const [showForm, setShowForm] = useState(false)
+  const [showInsights, setShowInsights] = useState(false)
   const formRef = useRef(null)
 
   const scrollToForm = () => {
@@ -62,7 +64,12 @@ function App() {
           </p>
           <div className="cta-group">
             <button className="primary-btn" onClick={scrollToForm}>Get Started</button>
-            <button className="secondary-btn">Documentation</button>
+            <button
+              className="secondary-btn"
+              onClick={() => setShowInsights(true)}
+            >
+              Model Insights
+            </button>
           </div>
         </motion.div>
       </header>
@@ -107,6 +114,8 @@ function App() {
       <footer style={{ marginTop: '6rem', padding: '2rem', textAlign: 'center', borderTop: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
         <p>&copy; 2026 CreditScoring ML System. All rights reserved.</p>
       </footer>
+
+      <ModelInsights isOpen={showInsights} onClose={() => setShowInsights(false)} />
     </div>
   )
 }

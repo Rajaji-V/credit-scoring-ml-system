@@ -90,17 +90,17 @@ const CreditForm = () => {
 
                 <div className="form-group">
                     <label>Loan Duration (mos)</label>
-                    <input type="number" name="Duration" value={formData.Duration} onChange={handleChange} />
+                    <input type="number" name="Duration" min="4" max="72" value={formData.Duration} onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
                     <label>Credit Requested (DM)</label>
-                    <input type="number" name="CreditAmount" value={formData.CreditAmount} onChange={handleChange} />
+                    <input type="number" name="CreditAmount" min="250" max="20000" value={formData.CreditAmount} onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
                     <label>Applicant Age</label>
-                    <input type="number" name="Age" value={formData.Age} onChange={handleChange} />
+                    <input type="number" name="Age" min="18" max="100" value={formData.Age} onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
