@@ -44,9 +44,35 @@
 .hero p {
   font-size: 1.25rem;
   color: var(--text-secondary);
-  max-width: 700px;
-  margin-bottom: 3rem;
-  line-height: 1.6;
+  max-width: 750px;
+  margin: 0 auto 4rem;
+  line-height: 1.7;
+}
+
+.cta-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.secondary-btn {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--text-secondary);
+  transform: translateY(-2px);
 }
 
 .features-grid {
