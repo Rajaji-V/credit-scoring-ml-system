@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { creditService } from './services/api'
 import { ShieldCheck, BarChart3, Zap, Lock, RefreshCw, Cpu } from 'lucide-react'
 import { motion } from 'framer-motion'
 import CreditForm from './components/CreditForm'
@@ -9,6 +10,13 @@ function App() {
   const [showForm, setShowForm] = useState(false)
   const [showInsights, setShowInsights] = useState(false)
   const formRef = useRef(null)
+
+  // Wake up backend on mount to reduce first-request latency (cold starts)
+  useEffect(() => {
+    creditService.getHealth().catch(() => {
+      console.log('Backend is initializing...');
+    });
+  }, []);
 
   const scrollToForm = () => {
     setShowForm(true)

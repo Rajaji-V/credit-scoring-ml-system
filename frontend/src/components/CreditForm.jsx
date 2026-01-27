@@ -48,11 +48,8 @@ const CreditForm = () => {
 
         try {
             const data = await creditService.predict(formData);
-            // Delay result slightly for better UX sensation
-            setTimeout(() => {
-                setResult(data);
-                setLoading(false);
-            }, 800);
+            setResult(data);
+            setLoading(false);
         } catch (err) {
             setError('System Integration Error: Unable to reach prediction engine.');
             setLoading(false);

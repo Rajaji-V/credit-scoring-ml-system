@@ -95,14 +95,15 @@ def health_check():
 def predict_risk(data: ApplicantData):
     try:
         # Convert Pydantic model to DataFrame
-        df = pd.DataFrame([data.dict()])
+        df = pd.DataFrame([data.model_dump()])
         
-        # Make prediction
-        pred = int(pipeline.predict(df)[0])
-        prob = float(pipeline.predict_proba(df)[0][1])
+        # Make prediction (single pass for efficiency)
+        probs = pipeline.predict_proba(df)[0]
+        prob = float(probs[1]) # Probability of "Bad Credit"
         
         # Interpret results
-        prediction_label = "Bad Credit" if pred == 1 else "Good Credit"
+        # Assuming the pipeline was trained with 0=Good, 1=Bad (as seen in main.py)
+        prediction_label = "Bad Credit" if prob >= 0.5 else "Good Credit"
         
         if prob < 0.3:
             risk_level = "Low"
