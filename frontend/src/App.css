@@ -1,125 +1,108 @@
 .app-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 .hero {
-  min-height: 80vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 6rem 0;
+  padding: 4rem 0;
   position: relative;
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-  z-index: -1;
-  filter: blur(60px);
-  opacity: 0.4;
-}
+/* Removed the "hero::before" glow blob for a cleaner look */
 
 .hero h1 {
-  font-size: clamp(3rem, 8vw, 5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 2rem;
-  letter-spacing: -0.05em;
-  background: linear-gradient(to bottom, #fff 40%, #94a3b8);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  /* Optional: Very subtle gradient for polish, but not neon */
+  background: linear-gradient(to right, var(--text-primary), var(--secondary));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--text-secondary);
-  max-width: 750px;
-  margin: 0 auto 4rem;
-  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
 }
 
 .cta-group {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .secondary-btn {
-  background: var(--glass-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--glass-border);
-  padding: 0.8rem 1.8rem;
-  border-radius: var(--radius-lg);
-  font-weight: 700;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
   color: var(--text-primary);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
+  font-size: 0.95rem;
 }
 
 .secondary-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--surface-subtle);
   border-color: var(--text-secondary);
-  transform: translateY(-2px);
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   padding: 4rem 0;
 }
 
 .feature-card {
-  padding: 2.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.feature-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.4s;
+  background: var(--surface);
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .feature-card:hover {
-  transform: translateY(-10px);
-  border-color: var(--primary);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), var(--shadow-glow);
-}
-
-.feature-card:hover::after {
-  opacity: 1;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-subtle);
 }
 
 .feature-icon {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05));
-  border: 1px solid var(--glass-border);
-  border-radius: 1rem;
+  width: 48px;
+  height: 48px;
+  background: var(--primary-subtle);
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--primary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }

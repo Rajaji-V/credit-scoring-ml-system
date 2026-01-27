@@ -20,33 +20,33 @@ function App() {
   const features = [
     {
       icon: <ShieldCheck size={24} />,
-      title: 'ML-Powered Scoring',
-      description: 'Advanced gradient boosting models provide highly accurate creditworthiness assessments in milliseconds.'
+      title: 'Risk Assessment',
+      description: 'Automated creditworthiness evaluation using statistical modeling.'
     },
     {
       icon: <BarChart3 size={24} />,
-      title: 'Real-time Analytics',
-      description: 'Monitor loan performance and credit trends with dynamic, interactive data visualizations.'
+      title: 'Performance Analytics',
+      description: 'Track loan portfolio performance and identify risk trends.'
     },
     {
       icon: <Zap size={24} />,
       title: 'Instant Decisions',
-      description: 'Streamline your underwriting process with automated approval workflows and risk thresholds.'
+      description: 'Accelerate underwriting with automated approval workflows.'
     },
     {
       icon: <Lock size={24} />,
-      title: 'Secure & Compliant',
-      description: 'Built with data privacy in mind, ensuring all financial data is handled with enterprise-grade security.'
+      title: 'Bank-Grade Security',
+      description: 'Financial data is protected with enterprise-level encryption.'
     },
     {
       icon: <RefreshCw size={24} />,
-      title: 'Continuous Learning',
-      description: 'Our models automatically retrain on new data patterns to adapt to changing market conditions.'
+      title: 'Adaptive Models',
+      description: 'Scoring algorithms update regularly to reflect market conditions.'
     },
     {
       icon: <Cpu size={24} />,
-      title: 'Model Explainability',
-      description: 'Understand the "why" behind every score with SHAP-based feature importance integration.'
+      title: 'Explainable AI',
+      description: 'Clear reasoning behind every credit decision for compliance.'
     }
   ]
 
@@ -54,21 +54,21 @@ function App() {
     <div className="app-container">
       <header className="hero">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
         >
-          <h1>Modern Credit Scoring Intelligence</h1>
+          <h1>Credit Risk Assessment</h1>
           <p>
-            Deploy robust machine learning models to assess risk and empower financial decisions with our next-generation credit scoring platform.
+            Professional loan underwriting and risk evaluation platform.
           </p>
           <div className="cta-group">
-            <button className="primary-btn" onClick={scrollToForm}>Get Started</button>
+            <button className="primary-btn" onClick={scrollToForm}>Start Application</button>
             <button
               className="secondary-btn"
               onClick={() => setShowInsights(true)}
             >
-              Model Insights
+              How it Works
             </button>
           </div>
         </motion.div>
@@ -79,17 +79,17 @@ function App() {
           ref={formRef}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          style={{ marginBottom: '8rem' }}
+          transition={{ duration: 0.3 }}
+          style={{ marginBottom: '6rem' }}
         >
           <CreditForm />
         </motion.section>
       )}
 
-      <section style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1rem' }}>Enterprise Features</h2>
-        <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
-          Discover the technology stack driving our high-precision financial analysis and risk assessment engine.
+      <section style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <h2 style={{ fontSize: '2rem', fontWeight: 700 }}>Platform Capabilities</h2>
+        <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '1rem auto 0' }}>
+          Built for accuracy, speed, and compliance.
         </p>
       </section>
 
@@ -98,9 +98,9 @@ function App() {
           <motion.div
             key={index}
             className="feature-card"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.05 }}
           >
             <div className="feature-icon">
               {feature.icon}
