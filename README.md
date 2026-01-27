@@ -15,6 +15,11 @@ A professional machine learning application designed to automate credit risk eva
 *   **RESTful API**: A documented **FastAPI** backend that serves the model, ready for integration with other banking systems.
 *   **Decision Transparency**: Provides not just a binary "Approve/Reject" decision, but also a probability score and risk categorization (Low/Medium/High).
 
+## 🚀 Live Demo
+
+*   **Frontend Application**: [https://credit-scoring-ml-system.vercel.app/](https://credit-scoring-ml-system.vercel.app/)
+*   **API Backend**: [https://credit-scoring-ml-system.onrender.com](https://credit-scoring-ml-system.onrender.com)
+
 ## System Interface
 
 ### Application Dashboard
