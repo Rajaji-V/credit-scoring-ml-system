@@ -1,41 +1,131 @@
-# Credit Scoring Project
+# Credit Risk Assessment System
 
-This project assesses the creditworthiness of loan applicants using financial and demographic data from the German Credit dataset.
+![Project Status](https://img.shields.io/badge/status-active-success.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![React](https://img.shields.io/badge/react-18%2B-blue)
+
+A professional machine learning application designed to automate credit risk evaluation for loan applicants. This system combines a robust **Random Forest** classification engine with a modern, high-performance web interface to provide real-time underwriting decisions.
+
+## Key Features
+
+*   **Real-Time Risk Scoring**: Instant assessment of creditworthiness using 20+ financial and demographic indicators.
+*   **Production-Grade Pipeline**: End-to-end `scikit-learn` pipeline handling data preprocessing, encoding, and scaling automatically.
+*   **Professional UI**: A clean, "FinTech-ready" user interface built with **React** and **Vite**, featuring responsive design and clear decision visualization.
+*   **RESTful API**: A documented **FastAPI** backend that serves the model, ready for integration with other banking systems.
+*   **Decision Transparency**: Provides not just a binary "Approve/Reject" decision, but also a probability score and risk categorization (Low/Medium/High).
+
+## System Interface
+
+### Application Dashboard
+<!-- Insert Dashboard Screenshot below -->
+![Dashboard Preview](frontend/public/assets/image1.png)
+*Professional input interface for loan applicant details.*
+
+### Risk Assessment Result
+<!-- Insert Result Screenshot below -->
+![Assessment Result](frontend/public/assets/image2.png)
+*Clear decision visualization with calculated risk probability.*
+
+## Tech Stack
+
+### Backend (Intelligence Layer)
+*   **FastAPI**: High-performance web framework for building APIs.
+*   **Scikit-Learn**: Machine learning library for model training and pipeline management.
+*   **Pandas & NumPy**: Data manipulation and numerical analysis.
+*   **Joblib**: Model serialization for efficient loading.
+
+### Frontend (Application Layer)
+*   **React (Vite)**: Component-based library for building user interfaces.
+*   **CSS Modules**: Modular and scoped styling for a professional look.
+*   **Framer Motion**: Smooth animations for enhanced user experience.
+*   **Lucide React**: Modern iconography standard.
 
 ## Project Structure
-- `dataset/` — Contains the raw data (`german.data`)
-- `backend/` — Source code for data processing, modeling, and API
-- `frontend/` — React application with Vite, Lucide, and Framer Motion
-- `outputs/` — Model outputs, reports, and results
 
-## Main Steps
-1. Data Loading & Preprocessing (using Scikit-Learn Pipeline)
-2. Exploratory Data Analysis (EDA)
-3. Feature Engineering
-4. Model Training & Evaluation
-5. Prediction Script
-6. API Deployment (FastAPI)
-7. Frontend Interface Genesis
+```bash
+credit-scoring-ml-system/
+├── backend/                
+│   ├── api.py              
+│   ├── main.py             
+│   ├── predict.py          
+│   └── ...
+├── frontend/               
+│   ├── src/
+│   │   ├── components/     
+│   │   ├── services/       
+│   │   └── ...
+│   └── ...
+├── dataset/                
+│   └── german.data         
+└── outputs/                
+    └── credit_scoring_pipeline.pkl  
+```
 
-## Usage
+## Quick Start
 
-### Backend (Python/FastAPI)
-1. Install dependencies: `pip install -r requirements.txt`
-2. Train the model: `python backend/main.py`
-3. Run the API: `uvicorn backend.api:app --reload`
-4. Access API Docs: Open `http://127.0.0.1:8000/docs`
+### Prerequisites
+*   Python 3.8 or higher
+*   Node.js 16+ and npm
 
-### Frontend (React/Vite)
-1. Navigate to directory: `cd frontend`
-2. Install dependencies: `npm install --legacy-peer-deps`
-3. Run development server: `npm run dev`
+### 1. Backend Setup
+Navigate to the root directory and install Python dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-## Requirements
-- Python 3.8+
-- Node.js & npm (for frontend)
-- See relevant `requirements.txt` and `package.json` files
+Train the model (this will generate the `.pkl` file):
+```bash
+python backend/main.py
+```
 
-## Dataset
-- Source: `dataset/german.data`
+Start the API server:
+```bash
+uvicorn backend.api:app --reload
+```
+*The API will be available at `http://127.0.0.1:8000`*
 
----
+### 2. Frontend Setup
+Open a new terminal, navigate to the frontend folder, and install dependencies:
+```bash
+cd frontend
+npm install
+```
+
+Run the development server:
+```bash
+npm run dev
+```
+*The application will launch at `http://localhost:5173`*
+
+## API Documentation
+
+Once the backend is running, you can access the interactive Swagger UI at:
+`http://127.0.0.1:8000/docs`
+
+### Interactive API Docs
+<!-- Insert Swagger UI Screenshot below -->
+![Swagger UI Preview]()
+
+**Endpoint**: `POST /predict`
+**Payload Example**:
+```json
+{
+  "Status": "A11",
+  "Duration": 12,
+  "CreditAmount": 2000,
+  "Age": 30,
+  ...
+}
+```
+
+## Model Performance
+
+The model is trained on the standard **German Credit Dataset** (UCI Machine Learning Repository).
+*   **Algorithm**: Random Forest Classifier
+*   **Accuracy**: ~80%
+*   **Precision (Good Credit)**: High precision to minimize financial risk.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
