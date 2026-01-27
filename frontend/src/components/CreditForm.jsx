@@ -188,6 +188,23 @@ const CreditForm = () => {
                                     {result.risk_level} Risk
                                 </div>
                             </div>
+
+                            <div className="status-box">
+                                <div className="status-label">Actionable Recommendation</div>
+                                <div className="status-value" style={{
+                                    color: Math.round((1 - result.probability) * 100) < 45 ? 'var(--error)' :
+                                        Math.round((1 - result.probability) * 100) <= 65 ? 'var(--warning)' : 'var(--success)',
+                                    fontWeight: '800',
+                                    letterSpacing: '0.05em'
+                                }}>
+                                    {(() => {
+                                        const score = Math.round((1 - result.probability) * 100);
+                                        if (score < 45) return 'REJECT';
+                                        if (score <= 65) return 'MANUAL REVIEW';
+                                        return 'APPROVE';
+                                    })()}
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 )}
